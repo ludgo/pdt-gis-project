@@ -1,0 +1,16 @@
+### database setup
+CREATE EXTENSION postgis;
+CREATE EXTENSION hstore;
+CREATE EXTENSION pgrouting;
+
+### download map from OpenStreetMaps
+### add .osm ending
+
+### without pgRouting (osm2pgsql)
+./osm2pgsql -m -H localhost -P 5433 -U postgres -W -d project map.osm
+
+### with pgRouting (osm2po)
+java -Xmx2g -jar osm2po-core-5.2.43-signed.jar map.osm
+### for generate sql file, uncomment #postp.0.class = de.cm.osm2po.plugins.postp.PgRoutingWriter
+psql -h localhost -p 5433 -U postgres -W -d project -f osm_2po_4pgr.sql
+SELECT pgr_createTopology('osm_2po_4pgr', 0.0001, 'geom_way', 'id');

@@ -1,0 +1,14 @@
+<!-- always extend this template -->
+
+<!doctype html>
+<html>
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+		{% include 'head.html' %}
+	</head>
+	<body>
+		<header id="header">{% include 'header.html' %}</header>
+		<div id="content">{% block content %}{% endblock %}</div>
+		<footer id="footer">{% include 'footer.html' %}</footer>
+	</body>
+</html>

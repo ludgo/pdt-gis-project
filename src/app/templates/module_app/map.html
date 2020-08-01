@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title -%}
+  Map of Brussels
+{%- endblock %}
+
+{% block content %}
+	<div id="sidebar">
+		<div id="navigator">
+			<h2>Healthcare providers</h2>
+			<p><b>Chosen specialist:</b></p>
+			<p id="healthpoint_name"></p>
+			<p><b>Chosen parking:</b></p>
+			<table id="parking_block">
+				<tr id="parking_area"></tr>
+				<tr id="parking_airdistance"></tr>
+				<tr id="parking_distance"></tr>
+				<tr>
+					<!-- possibly add path segments here -->
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		<div id="legend">
+			<p>Legenda</p>
+			<table>
+				<tr>
+					<th class="doctors">+</th>
+					<th>doctor</th>
+				</tr>
+				<tr>
+					<th class="dentist">D</th>
+					<th>dentist</th>
+				</tr>
+				<tr>
+					<th class="hospital">H</th>
+					<th>hospital</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div id='map'></div>
+
+	<script type="text/javascript" src="{{ url_for('static', filename='js/map.js') }}"></script>
+{% endblock %}
